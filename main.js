@@ -1,25 +1,17 @@
-let playerSelection = "rock"
+let playerSelection
+let computerSelection
+let playerScore
+let computerScore
 
 game()
 
 function game()
-{
-    let wonN = 0
-    let lostN = 0
-
-    for(let i = 0; i < 5; ++i)
-    {
-        let result = playRound(playerSelection, getComputerChoice())
-        if(result === "You won")
-          {wonN++
-        }
-        
-        if(result === "You lost")
-          {lostN++
-        }
-    }
-
-    console.log("You won %d times and lost %d times", wonN, lostN)
+{    
+        playerSelection = prompt()
+        computerSelection = getComputerChoice()
+        let result =  playRound(playerSelection, computerSelection)
+        console.log("Player: %d vs Computer: %d, %d", playerSelection, computerSelection, result)
+        //console.log("Player")
 }
 
 
@@ -29,11 +21,11 @@ function playRound(playerSelection, computerSelection){
         (playerSelection == "paper" && computerSelection == "rock") ||
         (playerSelection == "" && computerSelection == "rock") )
         {
-            return "You won"  
+            return "player won"  
         }
     else    
         {
-            return "You lost"
+            return "computer won"
         }
 }
 
