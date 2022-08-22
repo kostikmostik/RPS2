@@ -1,3 +1,8 @@
+let playerSelection
+let computerSelection
+let playerScore = 0
+let computerScore = 0
+
 
 const buttons = document.querySelectorAll('button');
 
@@ -6,39 +11,60 @@ buttons.forEach((button) => {
 
   // and for each one we add a 'click' listener
   button.addEventListener('click', () => {
-    gameRound(button.id);
+
+    if(button.id === 'rock' || button.id === 'paper' || button.id === 'scissors'){
+        gameRound(button.id);  
+    }
+    
+    if(button.id === 'reset'){
+        playerScore = 0;
+        computerScore = 0;
+        counterDisp.textContent = `Player: ${playerScore} Computer: ${computerScore}`
+        counterCont.appendChild(counterDisp)
+    }
   });
 });
 
-let playerSelection
-let computerSelection
-let playerScore
-let computerScore
+
+const resultsCont = document.querySelector('#result')
+const resultsDisp = document.createElement('p')
+
+const counterCont= document.querySelector('#counter')
+const counterDisp = document.createElement('p')
+
+
 
 function gameRound(buttonID)
 {    
         playerSelection = buttonID
         computerSelection = getComputerChoice()
         playRound(playerSelection, computerSelection)
+        resultsCont.appendChild(resultsDisp)
+        counterCont.appendChild(counterDisp)
 }
 
 
 function playRound(playerSelection, computerSelection){
 
-    if((playerSelection === computerSelection))
+    if(playerSelection === computerSelection)
         {
-            console.log(`Player: ${playerSelection}, Computer: ${computerSelection}, DRAW!!`)
+           resultsDisp.textContent = `Player: ${playerSelection}, Computer: ${computerSelection}, DRAW!!`
         }
-    else if( (playerSelection == "rock" && (computerSelection == "paper" || computerSelection == "scissors")) ||
+    else if( 
+        (playerSelection == "rock" && (computerSelection == "paper" || computerSelection == "scissors")) ||
         (playerSelection == "paper" && computerSelection == "rock") ||
-        (playerSelection == "" && computerSelection == "rock") )
+        (playerSelection == "scissors" && computerSelection == "rock") )
         {
-            console.log(`Player: ${playerSelection}, Computer: ${computerSelection}, YOU WON!!`)
+            resultsDisp.textContent = `Player: ${playerSelection}, Computer: ${computerSelection}, YOU WON!!`
+            playerScore = playerScore + 1
         }
     else    
         {
-            console.log(`Player: ${playerSelection}, Computer: ${computerSelection}, YOU LOST!!`)
+            resultsDisp.textContent = `Player: ${playerSelection}, Computer: ${computerSelection}, YOU LOST!!`
+            computerScore = computerScore + 1
         }
+
+        counterDisp.textContent = `Player: ${playerScore} Computer: ${computerScore}`
 }
 
 function getComputerChoice()
