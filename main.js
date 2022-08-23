@@ -19,8 +19,10 @@ buttons.forEach((button) => {
     if(button.id === 'reset'){
         playerScore = 0;
         computerScore = 0;
-        counterDisp.textContent = `Player: ${playerScore} Computer: ${computerScore}`
+        counterDisp.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`
         counterCont.appendChild(counterDisp)
+        resultsDisp.textContent = "Let's get ready to RUMBLEEE!!!"
+        resultsCont.appendChild(resultsDisp)
     }
   });
 });
@@ -32,6 +34,11 @@ const resultsDisp = document.createElement('p')
 const counterCont= document.querySelector('#counter')
 const counterDisp = document.createElement('p')
 
+counterDisp.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`
+counterCont.appendChild(counterDisp)
+
+resultsDisp.textContent = "Let's get ready to RUMBLEEE!!!"
+resultsCont.appendChild(resultsDisp)
 
 
 function gameRound(buttonID)
@@ -64,7 +71,7 @@ function playRound(playerSelection, computerSelection){
             computerScore = computerScore + 1
         }
 
-        counterDisp.textContent = `Player: ${playerScore} Computer: ${computerScore}`
+        counterDisp.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`
 }
 
 function getComputerChoice()
